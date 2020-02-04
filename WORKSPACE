@@ -61,10 +61,9 @@ rules_proto_toolchains()
 # section
 http_archive(
     name = "com_google_api_codegen",
-    strip_prefix = "gapic-generator-34da60e810b93ca7556df6ba21d16b771baaae32",
-    urls = ["https://github.com/googleapis/gapic-generator/archive/34da60e810b93ca7556df6ba21d16b771baaae32.zip"],
+    strip_prefix = "gapic-generator-b7033a61dbfc7f1ad856b17299cf8aeb688a94f4",
+    urls = ["https://github.com/googleapis/gapic-generator/archive/b7033a61dbfc7f1ad856b17299cf8aeb688a94f4.zip"],
 )
-
 
 ##############################################################################
 # C++
@@ -108,8 +107,8 @@ apple_support_dependencies()
 
 http_archive(
     name = "com_google_api_gax_java",
-    strip_prefix = "gax-java-1.50.1",
-    urls = ["https://github.com/googleapis/gax-java/archive/v1.50.1.zip"],
+    strip_prefix = "gax-java-9f83322606b982bebc4ebb2cd1d33485a1776396", # v1.52.0 plus bazel-2.0.0 compatibility fix
+    urls = ["https://github.com/googleapis/gax-java/archive/9f83322606b982bebc4ebb2cd1d33485a1776396.zip"],
 )
 
 load("@com_google_api_gax_java//:repository_rules.bzl", "com_google_api_gax_java_properties")
@@ -136,8 +135,8 @@ load("@com_google_api_codegen//:repositories.bzl", "com_google_api_codegen_repos
 
 http_archive(
     name = "com_google_protoc_java_resource_names_plugin",
-    strip_prefix = "protoc-java-resource-names-plugin-f3f2b834340fcd2932f2354e77249ff7d76528d8",
-    urls = ["https://github.com/googleapis/protoc-java-resource-names-plugin/archive/f3f2b834340fcd2932f2354e77249ff7d76528d8.zip"],
+    strip_prefix = "protoc-java-resource-names-plugin-2b04af0971699d6f042e8b5a6683487a40919a92",
+    urls = ["https://github.com/googleapis/protoc-java-resource-names-plugin/archive/2b04af0971699d6f042e8b5a6683487a40919a92.zip"],
 )
 
 com_google_api_codegen_repositories()
@@ -160,14 +159,14 @@ py_gapic_repositories()
 
 http_archive(
     name = "protoc_docs_plugin",
-    strip_prefix = "protoc-docs-plugin-54363302011e25ff83455bbcb8e5ae802dab6354",
-    urls = ["https://github.com/googleapis/protoc-docs-plugin/archive/54363302011e25ff83455bbcb8e5ae802dab6354.zip"],
+    strip_prefix = "protoc-docs-plugin-fa40c6ad56d6e98d3bd99fcb2b8c59d097430a7e",
+    urls = ["https://github.com/googleapis/protoc-docs-plugin/archive/fa40c6ad56d6e98d3bd99fcb2b8c59d097430a7e.zip"],
 )
 
 load(
     "@protoc_docs_plugin//:repositories.bzl",
-    "protoc_docs_plugin_repositories",
     "protoc_docs_plugin_register_toolchains",
+    "protoc_docs_plugin_repositories",
 )
 
 protoc_docs_plugin_repositories()
@@ -185,7 +184,7 @@ http_archive(
     url = "https://github.com/bazelbuild/rules_go/releases/download/0.18.5/rules_go-0.18.5.tar.gz",
 )
 
-load("@io_bazel_rules_go//go:deps.bzl", "go_rules_dependencies", "go_register_toolchains")
+load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
 
 go_rules_dependencies()
 
@@ -215,7 +214,9 @@ load("@com_google_api_codegen//rules_gapic/php:php_gapic_repositories.bzl", "php
 
 php(
     name = "php",
-    version = "7.1.30",
+    urls = ["https://www.php.net/distributions/php-7.1.30.tar.gz"],
+    strip_prefix = "php-7.1.30",
+    prebuilt_phps = ["@com_google_api_codegen//rules_gapic/php:resources/php-7.1.30_linux_x86_64.tar.gz"],
 )
 
 php_gapic_repositories()

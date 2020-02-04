@@ -13,6 +13,7 @@ proto_library(
     srcs = ["operations.proto"],
     deps = [
         "//google/api:annotations_proto",
+        "//google/api:client_proto",
         "//google/rpc:status_proto",
         "@com_google_protobuf//:any_proto",
         "@com_google_protobuf//:descriptor_proto",
@@ -81,7 +82,7 @@ go_test(
     importpath = "cloud.google.com/go/longrunning/autogen",
 )
 
-# Opensource Packages
+# Open Source Packages
 go_gapic_assembly_pkg(
     name = "gapi-cloud-longrunning-go",
     deps = [
